@@ -17,9 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mainViewModel: MainViewModel
 
-    var counter = 0
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,21 +36,14 @@ class MainActivity : AppCompatActivity() {
             textCounter.setText(value)
         })
     }
-    
-    private fun validateCounter() {
-        if(counter > 7) {
-            counter = 0
-        }
-    }
 
     private fun initClick() {
         buttonData.setOnClickListener {
-            counter++
-            validateCounter()
+            mainViewModel.counter()
         }
 
         buttonShow.setOnClickListener {
-            Toast.makeText(this, "Counter value: ${counter.toString()}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Counter value: ${mainViewModel.mainCounter.value}", Toast.LENGTH_SHORT).show()
         }
     }
 
